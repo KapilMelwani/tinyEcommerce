@@ -1,0 +1,10 @@
+package com.mhp.solutions.tiny.ecommerce.authentication;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public abstract class SimpleGrantedAuthorityMixin {
+
+    @JsonCreator
+    public SimpleGrantedAuthorityMixin(@JsonProperty("authority") String roles) { }
+}
