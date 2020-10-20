@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = "")
+@EnableJpaRepositories(basePackages = "com.mhp.solutions.tiny.ecommerce.repository")
 @SpringBootApplication
 public class Application {
 

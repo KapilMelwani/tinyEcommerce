@@ -1,8 +1,9 @@
 package com.mhp.solutions.tiny.ecommerce.repository;
 
-import com.mhp.solutions.tiny.ecommerce.entities.Customers;
 import com.mhp.solutions.tiny.ecommerce.entities.Orders;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrdersRepo extends JpaRepository<Long,Orders> {
+import java.util.List;
+
+public interface OrdersRepo extends JpaRepository<Orders,Long> {
 }
