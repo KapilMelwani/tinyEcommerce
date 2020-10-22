@@ -12,4 +12,5 @@ public interface OrdersRepo extends JpaRepository<Orders,Long> {
     List<Orders> findOrdersByCustomersId(Long customerId);
     List<Orders> findOrdersByAdministratorsId(Long administratorId);
     List<Orders> findOrdersByProductsId(Long productId);
+    void deleteOrdersById(Long orderId);
 }
