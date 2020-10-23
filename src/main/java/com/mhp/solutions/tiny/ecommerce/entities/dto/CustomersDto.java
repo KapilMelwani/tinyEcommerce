@@ -11,7 +11,7 @@ public class CustomersDto implements Serializable {
 
     private Long id;
 
-    private User user;
+    private UserDto user;
 
     private Date birthDate;
 
@@ -31,11 +31,11 @@ public class CustomersDto implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 

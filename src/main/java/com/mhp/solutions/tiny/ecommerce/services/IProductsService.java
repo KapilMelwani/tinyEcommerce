@@ -5,6 +5,7 @@ import com.mhp.solutions.tiny.ecommerce.entities.dto.ProductsDto;
 import java.util.List;
 
 public interface IProductsService {
+    List<ProductsDto> findAll();
     ProductsDto getProductByName(String name);
     ProductsDto getProductById(Long idProduct);
     List<ProductsDto> getProductsByPriceLessThan(Double priceLessThan);
