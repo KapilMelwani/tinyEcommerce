@@ -18,20 +18,16 @@ public class Administrators {
     @NotNull
     private User user;
 
-    @NotNull
-    private Date birthDate;
-
-    @NotNull
     private String address;
 
-    @NotNull
     @Length(max = 5)
     private String postalCode;
 
-    @NotNull
     private String city;
 
     private String administratorImage;
+
+    private Integer numProduct;
 
     public Long getId() {
         return id;
@@ -47,14 +43,6 @@ public class Administrators {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getAddress() {
@@ -79,6 +67,14 @@ public class Administrators {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Integer getNumProduct() {
+        return numProduct;
+    }
+
+    public void setNumProduct(Integer numProduct) {
+        this.numProduct = numProduct;
     }
 
     public String getAdministratorImage() {

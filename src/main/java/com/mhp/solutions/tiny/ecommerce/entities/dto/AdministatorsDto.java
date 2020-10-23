@@ -1,7 +1,5 @@
 package com.mhp.solutions.tiny.ecommerce.entities.dto;
 
-import com.mhp.solutions.tiny.ecommerce.entities.User;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,7 +9,7 @@ public class AdministatorsDto implements Serializable {
 
     private Long id;
 
-    private User user;
+    private UserDto user;
 
     private Date birthDate;
 
@@ -20,6 +18,8 @@ public class AdministatorsDto implements Serializable {
     private String postalCode;
 
     private String city;
+
+    private Integer numProduct = 0;
 
     private String administratorImage;
 
@@ -31,11 +31,11 @@ public class AdministatorsDto implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 
@@ -77,5 +77,13 @@ public class AdministatorsDto implements Serializable {
 
     public void setAdministratorImage(String administratorImage) {
         this.administratorImage = administratorImage;
+    }
+
+    public Integer getNumProduct() {
+        return numProduct;
+    }
+
+    public void setNumProduct(Integer numProduct) {
+        this.numProduct = numProduct;
     }
 }
