@@ -25,8 +25,8 @@ public class Products {
     @NotNull
     private Double price;
 
-    @Column(name = "PRODUCT_CATEGORY")
-    private String productCategory;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category productCategory;
 
     @Column(name = "STOCK")
     @NotNull
@@ -70,11 +70,11 @@ public class Products {
         this.price = price;
     }
 
-    public String getProductCategory() {
+    public Category getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(String productCategory) {
+    public void setProductCategory(Category productCategory) {
         this.productCategory = productCategory;
     }
 

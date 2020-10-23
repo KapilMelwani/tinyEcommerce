@@ -1,5 +1,7 @@
 package com.mhp.solutions.tiny.ecommerce.entities.dto;
 
+import com.mhp.solutions.tiny.ecommerce.entities.Category;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +17,7 @@ public class ProductsDto implements Serializable {
 
     private Double price;
 
-    private String productCategory;
+    private CategoryDto productCategory;
 
     private Integer stock;
 
@@ -55,14 +57,6 @@ public class ProductsDto implements Serializable {
         this.price = price;
     }
 
-    public String getProductCategory() {
-        return productCategory;
-    }
-
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
-    }
-
     public Integer getStock() {
         return stock;
     }
@@ -85,5 +79,13 @@ public class ProductsDto implements Serializable {
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public CategoryDto getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(CategoryDto productCategory) {
+        this.productCategory = productCategory;
     }
 }
