@@ -3,6 +3,7 @@ package com.mhp.solutions.tiny.ecommerce.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -30,6 +31,9 @@ public class Products {
     @Column(name = "STOCK")
     @NotNull
     private Integer stock;
+
+    @Column(name = "CREATION_DATE")
+    private Date creationDate;
 
     @Column(name = "PRODUCT_IMG_URL")
     private String productImage;
@@ -88,5 +92,13 @@ public class Products {
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }

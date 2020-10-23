@@ -6,6 +6,7 @@ import com.mhp.solutions.tiny.ecommerce.entities.dto.ProductsDto;
 import com.mhp.solutions.tiny.ecommerce.repository.ProductsRepo;
 import com.mhp.solutions.tiny.ecommerce.services.IProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,13 @@ public class ProductsServiceImpl implements IProductsService {
 
     @Autowired
     ProductsRepo productsRepo;
+
+    @Override
+    public List<ProductsDto> findAll() {
+        final List<Products> entities = productsRepo.findAll(Sort.by(Sort.Direction.DESC, "creationDate"));
+        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        return productsDtoList;
+    }
 
     @Override
     public ProductsDto getProductByName(String name) {
