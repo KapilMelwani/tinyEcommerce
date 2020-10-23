@@ -5,6 +5,7 @@ import com.mhp.solutions.tiny.ecommerce.entities.Gender;
 import com.mhp.solutions.tiny.ecommerce.entities.Roles;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 public class UserDto implements Serializable {
@@ -25,6 +26,8 @@ public class UserDto implements Serializable {
     private String password;
 
     private String phoneNumber;
+
+    private Date birthDate;
 
     private Boolean isActive = true;
 
@@ -100,5 +103,13 @@ public class UserDto implements Serializable {
 
     public void setRol(Roles rol) {
         this.rol = rol;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

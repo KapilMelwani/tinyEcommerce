@@ -1,6 +1,7 @@
 package com.mhp.solutions.tiny.ecommerce.services.impl;
 
 import com.mhp.solutions.tiny.ecommerce.config.ObjectMapperUtils;
+import com.mhp.solutions.tiny.ecommerce.config.SecurityConfiguration;
 import com.mhp.solutions.tiny.ecommerce.entities.User;
 import com.mhp.solutions.tiny.ecommerce.entities.dto.UserDto;
 import com.mhp.solutions.tiny.ecommerce.repository.UserRepo;
@@ -13,11 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements IUserService {
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    SecurityConfiguration securityConfiguration;
 
     @Override
     @Transactional
     public void addUser(UserDto userDto) {
         final User entity = ObjectMapperUtils.map(userDto, User.class);
+        entity.setPassword(securityConfiguration.getPasswordEncoder().encode(entity.getPassword()));
         userRepo.save(entity);
         userDto.setId(entity.getId());
     }

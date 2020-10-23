@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "USERS")
@@ -38,6 +39,9 @@ public class User {
     @Column(name = "PHONE_NUMBER", unique = true)
     @NotNull
     private String phoneNumber;
+
+    @NotNull
+    private Date birthDate;
 
     @Column(name = "IS_ACTIVE")
     private Boolean isActive = true;
@@ -118,5 +122,13 @@ public class User {
 
     public void setRol(Roles rol) {
         this.rol = rol;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }
