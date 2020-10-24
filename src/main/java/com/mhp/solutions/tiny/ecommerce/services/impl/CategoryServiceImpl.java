@@ -16,8 +16,11 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public CategoryDto getCategoryByName(String category) {
+        CategoryDto categoryDto = new CategoryDto();
         Category entity = categoryRepo.findCategoriesByCategoryName(category);
-        CategoryDto categoryDto = ObjectMapperUtils.map(entity,CategoryDto.class);
+        if(entity!=null) {
+            categoryDto = ObjectMapperUtils.map(entity, CategoryDto.class);
+        }
         return categoryDto;
     }
 

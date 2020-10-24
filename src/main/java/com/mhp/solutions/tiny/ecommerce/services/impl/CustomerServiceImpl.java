@@ -16,10 +16,13 @@ public class CustomerServiceImpl implements ICustomerService {
     CustomersRepo customersRepo;
 
     @Override
-    public CustomersDto getAdministratorByIdAndActive(Long customerId, Boolean isActive) {
-        Customers entity = customersRepo.findCustomersByIdAndUserIsActive(customerId,isActive);
-        CustomersDto administatorsDto = ObjectMapperUtils.map(entity,CustomersDto.class);
-        return administatorsDto;
+    public CustomersDto getAdministratorById(Long customerId) {
+        CustomersDto customersDto = new CustomersDto();
+        Customers entity = customersRepo.findCustomersById(customerId);
+        if(entity!=null) {
+            customersDto = ObjectMapperUtils.map(entity, CustomersDto.class);
+        }
+        return customersDto;
     }
 
     @Override

@@ -42,8 +42,11 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto getUserByEmail(String email) {
+        UserDto userDto = new UserDto();
         User entity = userRepo.findUserByEmail(email);
-        UserDto userDto = ObjectMapperUtils.map(entity,UserDto.class);
+        if(entity!=null){
+            userDto  = ObjectMapperUtils.map(entity,UserDto.class);
+        }
         return userDto;
     }
 }

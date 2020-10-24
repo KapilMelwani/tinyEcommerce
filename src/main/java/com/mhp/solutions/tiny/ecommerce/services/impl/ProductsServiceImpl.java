@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,57 +20,81 @@ public class ProductsServiceImpl implements IProductsService {
 
     @Override
     public List<ProductsDto> findAll() {
-        final List<Products> entities = productsRepo.findAll(Sort.by(Sort.Direction.DESC, "creationDate"));
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        List<ProductsDto> productsDtoList = new ArrayList<>();
+        final List<Products> entities = productsRepo.findAll();
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 
     @Override
     public ProductsDto getProductByName(String name) {
+        ProductsDto productsDto = new ProductsDto();
         Products entity = productsRepo.findProductsByProductName(name);
-        ProductsDto productsDto = ObjectMapperUtils.map(entity,ProductsDto.class);
+        if(entity!=null) {
+            productsDto = ObjectMapperUtils.map(entity, ProductsDto.class);
+        }
         return productsDto;
     }
 
     @Override
     public ProductsDto getProductById(Long idProduct) {
+        ProductsDto productsDto = new ProductsDto();
         Products entity = productsRepo.findProductsById(idProduct);
-        ProductsDto productsDto = ObjectMapperUtils.map(entity,ProductsDto.class);
+        if(entity!=null) {
+            productsDto = ObjectMapperUtils.map(entity, ProductsDto.class);
+        }
         return productsDto;
     }
 
     @Override
     public List<ProductsDto> getProductsByPriceLessThan(Double priceLessThan) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
         final List<Products> entities = productsRepo.findProductsByPriceLessThan(priceLessThan);
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 
     @Override
     public List<ProductsDto> getProductsByPriceGreaterThan(Double priceGreaterThan) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
         final List<Products> entities = productsRepo.findProductsByPriceGreaterThan(priceGreaterThan);
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 
     @Override
     public List<ProductsDto> getProductsByProductCategory(String category) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
         final List<Products> entities = productsRepo.findProductsByProductCategory(category);
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 
     @Override
     public List<ProductsDto> getProductsByStockLessThanEqual(Integer stockLessThan) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
         final List<Products> entities = productsRepo.findProductsByStockLessThanEqual(stockLessThan);
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 
     @Override
     public List<ProductsDto> getProductsByStockGreaterThanEqual(Integer stockGreaterThan) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
         final List<Products> entities = productsRepo.findProductsByStockGreaterThanEqual(stockGreaterThan);
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 
@@ -89,8 +114,11 @@ public class ProductsServiceImpl implements IProductsService {
 
     @Override
     public List<ProductsDto> getProductsByOwner(Long ownerId) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
         final List<Products> entities = productsRepo.findProductsByProductOwnerId(ownerId);
-        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        if(entities!=null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        }
         return productsDtoList;
     }
 

@@ -16,8 +16,11 @@ public class AdministratorServiceImpl implements IAdministratorService {
 
     @Override
     public AdministratorsDto getAdministratorById(Long adminId) {
+        AdministratorsDto administatorsDto = new AdministratorsDto();
         Administrators entity = administratorsRepo.findAdministratorsById(adminId);
-        AdministratorsDto administatorsDto = ObjectMapperUtils.map(entity,AdministratorsDto.class);
+        if(entity!=null) {
+            administatorsDto = ObjectMapperUtils.map(entity, AdministratorsDto.class);
+        }
         return administatorsDto;
     }
 

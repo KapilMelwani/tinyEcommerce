@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,29 +19,46 @@ public class OrdersServiceImpl implements IOrdersService {
     OrdersRepo ordersRepo;
     @Override
     public List<OrdersDto> getOrdersByActualStatus(State state) {
+        List<OrdersDto> ordersDtoList = new ArrayList<>();
         final List<Orders> entities = ordersRepo.findOrdersByActualStatus(state);
-        final List<OrdersDto> ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        if(entities!=null &&
+                !entities.isEmpty()) {
+            ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        }
         return ordersDtoList;
     }
 
     @Override
     public List<OrdersDto> getOrdersByCustomersId(Long customerId) {
+        List<OrdersDto> ordersDtoList = new ArrayList<>();
+
         final List<Orders> entities = ordersRepo.findOrdersByCustomersId(customerId);
-        final List<OrdersDto> ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        if(entities!=null &&
+                !entities.isEmpty()) {
+            ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        }
         return ordersDtoList;
     }
 
     @Override
     public List<OrdersDto> getOrdersByAdministratorsId(Long administratorId) {
+        List<OrdersDto> ordersDtoList = new ArrayList<>();
         final List<Orders> entities = ordersRepo.findOrdersByAdministratorsId(administratorId);
-        final List<OrdersDto> ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        if(entities!=null &&
+                !entities.isEmpty()) {
+            ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        }
         return ordersDtoList;
     }
 
     @Override
     public List<OrdersDto> getOrdersByProductsId(Long productId) {
+        List<OrdersDto> ordersDtoList = new ArrayList<>();
         final List<Orders> entities = ordersRepo.findOrdersByProductsId(productId);
-        final List<OrdersDto> ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        if(entities!=null &&
+                !entities.isEmpty()) {
+            ordersDtoList = ObjectMapperUtils.mapAll(entities, OrdersDto.class);
+        }
         return ordersDtoList;
     }
 
