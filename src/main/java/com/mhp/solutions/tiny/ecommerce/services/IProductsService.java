@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductsService {
     List<ProductsDto> findAll();
-    ProductsDto getProductByName(String name);
+    List<ProductsDto> getProductByNameLike(String name);
     ProductsDto getProductById(Long idProduct);
     List<ProductsDto> getProductsByPriceLessThan(Double priceLessThan);
     List<ProductsDto> getProductsByPriceGreaterThan(Double priceGreaterThan);

@@ -29,13 +29,13 @@ public class ProductsServiceImpl implements IProductsService {
     }
 
     @Override
-    public ProductsDto getProductByName(String name) {
-        ProductsDto productsDto = new ProductsDto();
-        Products entity = productsRepo.findProductsByProductName(name);
-        if(entity!=null) {
-            productsDto = ObjectMapperUtils.map(entity, ProductsDto.class);
+    public List<ProductsDto> getProductByNameLike(String name) {
+        List<ProductsDto> productsDtoList = new ArrayList<>();
+        final List<Products> entities = productsRepo.findProductsByProductNameLike(name);
+        if (entities != null && !entities.isEmpty()) {
+            productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
         }
-        return productsDto;
+        return productsDtoList;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ProductsServiceImpl implements IProductsService {
     @Override
     public List<ProductsDto> getProductsByProductCategory(String category) {
         List<ProductsDto> productsDtoList = new ArrayList<>();
-        final List<Products> entities = productsRepo.findProductsByProductCategory(category);
+        final List<Products> entities = productsRepo.findProductsByProductCategoryCategoryName(category);
         if(entities!=null && !entities.isEmpty()) {
             productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
         }
