@@ -3,7 +3,7 @@ package com.mhp.solutions.tiny.ecommerce.entities.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class AdministatorsDto implements Serializable {
+public class AdministratorsDto implements Serializable {
 
     private static final long serialVersionUID = -3639032996487061986L;
 
@@ -18,8 +18,6 @@ public class AdministatorsDto implements Serializable {
     private String postalCode;
 
     private String city;
-
-    private Integer numProduct = 0;
 
     private String administratorImage;
 
@@ -77,13 +75,5 @@ public class AdministatorsDto implements Serializable {
 
     public void setAdministratorImage(String administratorImage) {
         this.administratorImage = administratorImage;
-    }
-
-    public Integer getNumProduct() {
-        return numProduct;
-    }
-
-    public void setNumProduct(Integer numProduct) {
-        this.numProduct = numProduct;
     }
 }

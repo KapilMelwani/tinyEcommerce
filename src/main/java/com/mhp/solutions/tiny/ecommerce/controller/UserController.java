@@ -4,7 +4,7 @@ import com.mhp.solutions.tiny.ecommerce.api.ApiError;
 import com.mhp.solutions.tiny.ecommerce.api.ApiSuccess;
 import com.mhp.solutions.tiny.ecommerce.controller.util.UtilController;
 import com.mhp.solutions.tiny.ecommerce.entities.Roles;
-import com.mhp.solutions.tiny.ecommerce.entities.dto.AdministatorsDto;
+import com.mhp.solutions.tiny.ecommerce.entities.dto.AdministratorsDto;
 import com.mhp.solutions.tiny.ecommerce.entities.dto.CustomersDto;
 import com.mhp.solutions.tiny.ecommerce.entities.dto.UserDto;
 import com.mhp.solutions.tiny.ecommerce.services.IAdministratorService;
@@ -33,7 +33,7 @@ public class UserController extends UtilController {
         try {
             user.setRol(Roles.ADMINISTRATOR);
             userService.addUser(user);
-            final AdministatorsDto administatorsDto = new AdministatorsDto();
+            final AdministratorsDto administatorsDto = new AdministratorsDto();
             administatorsDto.setUser(user);
             administatorsDto.setId(user.getId());
             administratorService.addAdministrator(administatorsDto);

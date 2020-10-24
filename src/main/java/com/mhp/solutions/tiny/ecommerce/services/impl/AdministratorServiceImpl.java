@@ -2,7 +2,7 @@ package com.mhp.solutions.tiny.ecommerce.services.impl;
 
 import com.mhp.solutions.tiny.ecommerce.config.ObjectMapperUtils;
 import com.mhp.solutions.tiny.ecommerce.entities.Administrators;
-import com.mhp.solutions.tiny.ecommerce.entities.dto.AdministatorsDto;
+import com.mhp.solutions.tiny.ecommerce.entities.dto.AdministratorsDto;
 import com.mhp.solutions.tiny.ecommerce.repository.AdministratorsRepo;
 import com.mhp.solutions.tiny.ecommerce.services.IAdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +15,15 @@ public class AdministratorServiceImpl implements IAdministratorService {
     AdministratorsRepo administratorsRepo;
 
     @Override
-    public AdministatorsDto getAdministratorById(Long adminId) {
+    public AdministratorsDto getAdministratorById(Long adminId) {
         Administrators entity = administratorsRepo.findAdministratorsById(adminId);
-        AdministatorsDto administatorsDto = ObjectMapperUtils.map(entity,AdministatorsDto.class);
+        AdministratorsDto administatorsDto = ObjectMapperUtils.map(entity,AdministratorsDto.class);
         return administatorsDto;
     }
 
     @Override
     @Transactional
-    public void addAdministrator(AdministatorsDto administatorsDto) {
+    public void addAdministrator(AdministratorsDto administatorsDto) {
         final Administrators entity = ObjectMapperUtils.map(administatorsDto, Administrators.class);
         administratorsRepo.save(entity);
         administatorsDto.setId(entity.getId());
@@ -31,7 +31,7 @@ public class AdministratorServiceImpl implements IAdministratorService {
 
     @Override
     @Transactional
-    public void updateAdministrator(AdministatorsDto administatorsDto) {
+    public void updateAdministrator(AdministratorsDto administatorsDto) {
         final Administrators entity = ObjectMapperUtils.map(administatorsDto, Administrators.class);
         administratorsRepo.save(entity);
         administatorsDto.setId(entity.getId());

@@ -25,7 +25,7 @@ public class CustomerController extends UtilController{
     private final Log logger = LogFactory.getLog(getClass());
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @RequestMapping(method = RequestMethod.POST, value = "/api/products/all")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/products/show")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<?> getProductInfo(@RequestBody final Authentication authentication) {
         try {

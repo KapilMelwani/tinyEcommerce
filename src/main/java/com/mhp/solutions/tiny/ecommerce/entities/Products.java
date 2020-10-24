@@ -28,6 +28,9 @@ public class Products {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category productCategory;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Administrators productOwner;
+
     @Column(name = "STOCK")
     @NotNull
     private Integer stock;
@@ -100,5 +103,13 @@ public class Products {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Administrators getProductOwner() {
+        return productOwner;
+    }
+
+    public void setProductOwner(Administrators productOwner) {
+        this.productOwner = productOwner;
     }
 }

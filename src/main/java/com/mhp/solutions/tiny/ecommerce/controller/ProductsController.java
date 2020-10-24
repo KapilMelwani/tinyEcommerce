@@ -3,7 +3,7 @@ package com.mhp.solutions.tiny.ecommerce.controller;
 import com.mhp.solutions.tiny.ecommerce.api.ApiError;
 import com.mhp.solutions.tiny.ecommerce.api.ApiSuccess;
 import com.mhp.solutions.tiny.ecommerce.controller.util.UtilController;
-import com.mhp.solutions.tiny.ecommerce.entities.dto.AdministatorsDto;
+import com.mhp.solutions.tiny.ecommerce.entities.dto.AdministratorsDto;
 import com.mhp.solutions.tiny.ecommerce.entities.dto.CategoryDto;
 import com.mhp.solutions.tiny.ecommerce.entities.dto.ProductsDto;
 import com.mhp.solutions.tiny.ecommerce.services.IAdministratorService;
@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class ProductsController extends UtilController {
@@ -50,13 +51,57 @@ public class ProductsController extends UtilController {
                 categoryService.addCategory(categoryDto);
             }
             productsDto.setCreationDate(new Date());
-            productsDto.setCreationDate(new Date());
             productsDto.setProductCategory(categoryDto);
+            AdministratorsDto administratorsDto = administratorService.getAdministratorById(userId);
+            productsDto.setProductOwner(administratorsDto);
             productsService.addProduct(productsDto);
-            AdministatorsDto administatorsDto = administratorService.getAdministratorById(userId);
-            administatorsDto.setNumProduct(administatorsDto.getNumProduct()+1);
-            administratorService.updateAdministrator(administatorsDto);
-            return new ResponseEntity<>(new ApiSuccess(productsDto.getId(), "Product added by " +  administatorsDto.getUser().getName() + "."),HttpStatus.OK);
+            return new ResponseEntity<>(new ApiSuccess(productsDto.getId(), "Product added by " +  administratorsDto.getUser().getName() + "."),HttpStatus.OK);
+        } catch (final Exception e) {
+            logger.error("[GET_ITEMS_ERROR] Error getting items: " + e);
+            return new ResponseEntity<>(
+                    new ApiError("GET_ITEMS_ERROR", "Error getting items: " + e),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PreAuthorize("hasAuthority('ADMINISTRATOR')")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/products/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    ResponseEntity<?> updateProductInfo(final Authentication authentication,@RequestBody ProductsDto productsDto) {
+        if(productsDto==null) {
+            return invalidParam("productsDto");
+        }
+        try {
+            Long userId = getUserIdFromAuthenticationInfo(authentication);
+            CategoryDto categoryDto = new CategoryDto();
+            if(!categoryService.existsInDb(productsDto.getProductCategory().getCategoryName())) {
+                categoryDto = new CategoryDto();
+                categoryDto.setCategoryName(productsDto.getProductCategory().getCategoryName());
+                categoryService.addCategory(categoryDto);
+                productsDto.setProductCategory(categoryDto);
+            }
+            AdministratorsDto administratorsDto = administratorService.getAdministratorById(userId);
+            productsDto.setProductOwner(administratorsDto);
+            productsService.updateProduct(productsDto);
+            return new ResponseEntity<>(
+                    new ApiSuccess(productsDto.getId(), "Product updated."), HttpStatus.OK);
+        } catch (final Exception e) {
+            logger.error("[UPDATE_ITEMS_ERROR] Error getting items: " + e);
+            return new ResponseEntity<>(
+                    new ApiError("UPDATE_ITEMS_ERROR", "Error getting items: " + e),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PreAuthorize("hasAuthority('ADMINISTRATOR')")
+    @RequestMapping(method = RequestMethod.GET, value = "/api/products/all")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<?> getProductsAdministrator(final Authentication authentication) {
+        try {
+            Long adminId = getUserIdFromAuthenticationInfo(authentication);
+            List<ProductsDto> productsDtoList = productsService.getProductsByOwner(adminId);
+            return new ResponseEntity<>(
+                    productsDtoList, HttpStatus.OK);
         } catch (final Exception e) {
             logger.error("[GET_ITEMS_ERROR] Error getting items: " + e);
             return new ResponseEntity<>(

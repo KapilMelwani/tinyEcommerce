@@ -88,6 +88,13 @@ public class ProductsServiceImpl implements IProductsService {
     }
 
     @Override
+    public List<ProductsDto> getProductsByOwner(Long ownerId) {
+        final List<Products> entities = productsRepo.findProductsByProductOwnerId(ownerId);
+        final List<ProductsDto> productsDtoList = ObjectMapperUtils.mapAll(entities, ProductsDto.class);
+        return productsDtoList;
+    }
+
+    @Override
     public void deleteProductById(Long idProduct) {
         productsRepo.deleteProductsById(idProduct);
     }

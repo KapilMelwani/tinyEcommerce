@@ -1,10 +1,12 @@
 package com.mhp.solutions.tiny.ecommerce.entities;
 
+import com.mhp.solutions.tiny.ecommerce.entities.dto.ProductsDto;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ADMINISTRATORS")
@@ -26,8 +28,6 @@ public class Administrators {
     private String city;
 
     private String administratorImage;
-
-    private Integer numProduct;
 
     public Long getId() {
         return id;
@@ -67,14 +67,6 @@ public class Administrators {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Integer getNumProduct() {
-        return numProduct;
-    }
-
-    public void setNumProduct(Integer numProduct) {
-        this.numProduct = numProduct;
     }
 
     public String getAdministratorImage() {

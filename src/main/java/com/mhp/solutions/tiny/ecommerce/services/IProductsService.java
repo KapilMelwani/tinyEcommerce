@@ -13,6 +13,7 @@ public interface IProductsService {
     List<ProductsDto> getProductsByProductCategory(String category);
     List<ProductsDto> getProductsByStockLessThanEqual(Integer stockLessThan);
     List<ProductsDto> getProductsByStockGreaterThanEqual(Integer stockGreaterThan);
+    List<ProductsDto> getProductsByOwner(Long ownerId);
     void addProduct(ProductsDto productsDto);
     void updateProduct(ProductsDto productsDto);
     void deleteProductById(Long idProduct);
